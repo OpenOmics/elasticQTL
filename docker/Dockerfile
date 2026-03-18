@@ -10,5 +10,10 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Write to the global Rprofile.site so settings persist in Singularity/Apptainer
+# ($R_HOME/etc/Rprofile.site is inside the R install tree, not in $HOME)
+RUN echo 'options(menu.graphics = FALSE)' >> "$(Rscript -e 'cat(R.home())')/etc/Rprofile.site" && \
+    echo 'options(repos = c(CRAN = "https://cloud.r-project.org/"))' >> "$(Rscript -e 'cat(R.home())')/etc/Rprofile.site"
+
 COPY docker/install_packages.R /install_packages.R
 RUN Rscript /install_packages.R && rm /install_packages.R
