@@ -10,5 +10,5 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY install_packages.R /install_packages.R
+COPY docker/install_packages.R /install_packages.R
 RUN Rscript /install_packages.R && rm /install_packages.R
