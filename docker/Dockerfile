@@ -2,13 +2,25 @@ FROM rocker/r-ver:4.5
 LABEL maintainer="Ryan Routsong <routsongrm@nih.gov>"
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PACKAGES="libnss-sss wget ca-certificates libssl-dev libcurl4-openssl-dev libxml2-dev \
-    mono-mcs libncurses5-dev libncursesw5-dev zlib1g zlib1g-dev bzip2 libbz2-dev liblzma-dev libhtscodecs2 locales"
+
+ENV PACKAGES="libnss-sss gcc gfortran make libblas-dev liblapack-dev \
+    libatlas-base-dev wget ca-certificates libssl-dev libcurl4-openssl-dev \
+    libxml2-dev mono-mcs libncurses5-dev libncursesw5-dev zlib1g zlib1g-dev \
+    git vim bzip2 libbz2-dev liblzma-dev libhtscodecs2 locales locales-all"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ${PACKAGES} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+
+ENV LANG=en_US.UTF-8 
+ENV LC_ALL=en_US.UTF-8
+
+RUN cd /opt; git clone https://github.com/chrchang/plink-ng.git
 
 # Write to the global Rprofile.site so settings persist in Singularity/Apptainer
 # ($R_HOME/etc/Rprofile.site is inside the R install tree, not in $HOME)
