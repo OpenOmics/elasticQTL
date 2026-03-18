@@ -220,4 +220,7 @@ __marimo__/
 
 # VIM: Swap-files
 [._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
+[._]s[a-w][a-z]git
+
+# backup files
+._*
