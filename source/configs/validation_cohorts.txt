@@ -1,0 +1,4 @@
+cohort	bfile
+wgs	/data/NCBR/projects/NCBR-263/2025/newest/validation/wgs
+wes	/data/NCBR/projects/NCBR-263/2025/newest/validation/wes
+array	/data/NCBR/projects/NCBR-263/2025/newest/validation/CSP_validation/new_qc/merge2

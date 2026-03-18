@@ -1,0 +1,15 @@
+# Outputs
+results/
+logs/
+**/*.bed
+**/*.bim
+**/*.fam
+**/*.raw
+**/*.rds
+**/*.glm.*
+**/*.clumped
+**/*.clump
+**/*.log
+
+# OS
+.DS_Store
