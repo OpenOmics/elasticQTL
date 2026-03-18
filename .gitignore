@@ -224,3 +224,6 @@ __marimo__/
 
 # backup files
 ._*
+
+# macos display temp files
+.DS_Store
