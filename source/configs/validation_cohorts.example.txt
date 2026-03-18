@@ -1,0 +1,4 @@
+cohort	bfile
+wgs	/path/to/WGS_prefix
+wes	/path/to/WES_prefix
+array	/path/to/ARRAY_prefix
