@@ -34,5 +34,7 @@ RUN cd /opt/plink-ng/2.0/build_dynamic; make; ln -s /opt/plink-ng/2.0/build_dyna
 RUN mkdir -p /opt/plink-ng/2.3
 COPY docker/plink2 /opt/plink-ng/2.3/plink2.3
 RUN ln -s /opt/plink-ng/2.3/plink2.3 /usr/bin/plink2.3
+RUN chmod +x /usr/bin/plink1.9; chmod +x /usr/bin/plink2.0; chmod +x /usr/bin/plink2.3
 COPY source /opt/elasticQTL
+RUN chmod +x /opt/elasticQTL/scripts/run_validation.sh; chmod +x /opt/elasticQTL/scripts/run_pipeline.sh
 WORKDIR /opt/elasticQTL
