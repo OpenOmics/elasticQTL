@@ -119,9 +119,6 @@ DRY_RUN="0"
 PLINK2="plink2"
 RSCRIPT="Rscript"
 USE_MODULES="0"
-MODULE_INIT="AUTO"
-MODULE_R="NONE"
-MODULE_PLINK2="NONE"
 
 INTERSECTION_MODE="all"
 ALPHA="0.5"
@@ -166,7 +163,9 @@ done
 declare -A config
 parse_env "${CONFIG}" config
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
+[[ "${SCRIPT_DIR}" == /vf/users/* ]] && SCRIPT_DIR="/data${SCRIPT_DIR#/vf/users}"
+
 bfiles=( $(get_cohort_bfiles "$COHORTS_TSV") )
 
 # path variables
@@ -215,6 +214,9 @@ mkdir -p "${OUTDIR}"/{00_model,01_match,02_extract,03_refit,04_scores,logs}
 
 MODEL_WEIGHTS="${OUTDIR}/00_model/model_weights.tsv"
 MODEL_VARS="${OUTDIR}/00_model/model_variants.txt"
+
+# run_cmd "ls -al /data/OpenOmics/dev/katie_pipeline/from_katie/elasticQTL/" "$bindpaths"
+# die ""
 
 # 1) export model variants
 run_cmd "${RSCRIPT} '${SCRIPT_DIR}/validation/10_export_model_variants.R' '${TRAIN_MODEL_RDS}' '${MODEL_WEIGHTS}' '${MODEL_VARS}' > '${OUTDIR}/logs/01_export_model_variants.log'" "$bindpaths"
