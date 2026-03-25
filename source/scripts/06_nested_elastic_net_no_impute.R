@@ -259,9 +259,15 @@ run_nested <- function(variant_ids, label) {
 
   overall_r2 <- suppressWarnings(cor(y, preds_all)^2)
 
-  coef_mat <- do.call(cbind, coef_list)
+   coef_mat <- do.call(cbind, coef_list)
+  n_selected_per_fold <- colSums(coef_mat != 0)
+  fwrite(data.table(
+    Fold = seq_len(K_outer),
+    n_selected = n_selected_per_fold
+  ), file.path(outdir, paste0("n_selected_per_fold_", label, ".tsv")), sep="\t")
   colnames(coef_mat) <- paste0("Fold", seq_len(K_outer))
   sel_freq <- rowSums(coef_mat != 0)
+  n_selected_at_least_5 <- sum(sel_freq >= 5)
   mean_coef <- rowMeans(coef_mat)
 
   stab <- data.table(
@@ -279,6 +285,7 @@ run_nested <- function(variant_ids, label) {
   data.table(
     label=label,
     n_variants=length(variant_ids),
+    n_selected_at_least_5=n_selected_at_least_5,
     mean_r2=mean(r2_outer, na.rm=TRUE),
     sd_r2=sd(r2_outer, na.rm=TRUE),
     overall_r2=overall_r2,
