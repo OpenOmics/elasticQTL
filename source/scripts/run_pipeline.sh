@@ -13,7 +13,7 @@ die() {
 
 get_current_server() {
     # Get the hostname
-    hn=$(hostname)
+    local hn=$(hostname)
 
     # biowulf compute
     if [[ "$hn" =~ ^cn[0-9]{4}$ ]]; then
