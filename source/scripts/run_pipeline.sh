@@ -191,7 +191,7 @@ EXCLUDE="NONE"
 QTL_META="NONE"
 OUTDIR=""
 PLINK1="plink1.9"
-PLINK2="plink2.0"
+PLINK2="plink2.3"
 RSCRIPT="Rscript"
 MODULE_INIT="AUTO"
 MODULE_R="NONE"
@@ -222,6 +222,7 @@ DRY_RUN="0"
 # --------------------------
 # Parse args
 # --------------------------
+HAS_CLI_FLAGS="0"
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 	--config)
@@ -231,118 +232,147 @@ while [[ $# -gt 0 ]]; do
 		;;
 	--bfile)
 		BFILE="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--pheno)
 		PHENO="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--pheno-name)
 		PHENO_NAME="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--covar)
 		COVAR="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--exclude)
 		EXCLUDE="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--qtl-meta)
 		QTL_META="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--outdir)
 		OUTDIR="$(readlink -f $2)"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--plink1)
 		PLINK1="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--plink2)
 		PLINK2="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--rscript)
 		RSCRIPT="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--geno)
 		GENO="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--mind)
 		MIND="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--missing-policy)
 		MISSING_POLICY="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--clump-r2)
 		CLUMP_R2="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--clump-kb)
 		CLUMP_KB="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--clump-p1)
 		CLUMP_P1="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--clump-p2)
 		CLUMP_P2="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--alpha)
 		ALPHA="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--outer-folds)
 		OUTER_FOLDS="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--inner-folds)
 		INNER_FOLDS="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--seed)
 		SEED="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--p-thresholds)
 		P_THRESHOLDS="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--label-mode)
 		LABEL_MODE="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--stability-set)
 		STABILITY_SET="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--stability-min-folds)
 		STABILITY_MIN_FOLDS="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--from-step)
 		FROM_STEP="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--to-step)
 		TO_STEP="$2"
+		HAS_CLI_FLAGS="1"
 		shift 2
 		;;
 	--force)
 		FORCE="1"
+		HAS_CLI_FLAGS="1"
 		shift
 		;;
 	--dry-run)
 		DRY_RUN="1"
+		HAS_CLI_FLAGS="1"
 		shift
 		;;
 	-h | --help)
@@ -352,6 +382,8 @@ while [[ $# -gt 0 ]]; do
 	*) die "Unknown option: $1 (use --help)" ;;
 	esac
 done
+
+[[ -n "${CONFIG}" && "${HAS_CLI_FLAGS}" -eq 1 ]] && die "Either use --config or the other command line interface flags, do not use both."
 
 # --------------------------
 # Validate required args

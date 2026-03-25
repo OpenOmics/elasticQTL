@@ -116,9 +116,8 @@ FORCE="0"
 DRY_RUN="0"
 
 # defaults (can be overridden by config)
-PLINK2="plink2"
+PLINK2="plink2.3"
 RSCRIPT="Rscript"
-USE_MODULES="0"
 
 INTERSECTION_MODE="all"
 ALPHA="0.5"
@@ -129,6 +128,7 @@ AUTO_IMPUTE_MAX_CELL_RATE="0.001"
 AUTO_DROP_MAX_SAMPLE_RATE="0.02"
 AMBIGUOUS_POLICY="drop"
 
+HAS_CLI_FLAGS="0"
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 	--config)
@@ -138,10 +138,12 @@ while [[ $# -gt 0 ]]; do
 		;;
 	--force)
 		FORCE="1"
+		HAS_CLI_FLAGS="1"
 		shift
 		;;
 	--dry-run)
 		DRY_RUN="1"
+		HAS_CLI_FLAGS="1"
 		shift
 		;;
 	-h | --help)
@@ -151,6 +153,8 @@ while [[ $# -gt 0 ]]; do
 	*) die "Unknown option: $1" ;;
 	esac
 done
+
+# [[ -n "${CONFIG}" && "${HAS_CLI_FLAGS}" -eq 1 ]] && die "Either use --config or the other command line interface flags, do not use both."
 
 [[ -n "${CONFIG}" ]] || die "--config is required"
 [[ -n "${TRAIN_MODEL_RDS:-}" ]] || die "TRAIN_MODEL_RDS not set in config"
