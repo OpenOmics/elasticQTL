@@ -10,7 +10,7 @@ die() {
 
 get_current_server() {
     # Get the hostname
-    hn=$(hostname)
+    local hn=$(hostname)
 
     # biowulf compute
     if [[ "$hn" =~ ^cn[0-9]{4}$ ]]; then
@@ -35,9 +35,11 @@ get_current_server() {
     return 1
 }
 
-if (get_current_server) | grep -q "biowulf"; then
+server=$(get_current_server)
+
+if [[ "$server" == "biowulf" ]]; then
 	SINGULARITY_IMAGE="/data/OpenOmics/SIFs/elasticqtl_0.0.1.sif"
-elif (get_current_server) | grep -q "skyline"; then
+elif [[ "$server" == "skyline" ]]; then
 	SINGULARITY_IMAGE="/data/openomics/SIFs/elasticqtl_0.0.1.sif"
 else
 	die "Unknown server, cannot determine singularity image path"
