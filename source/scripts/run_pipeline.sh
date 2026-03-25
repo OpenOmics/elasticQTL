@@ -4,13 +4,47 @@ set -euo pipefail
 # --------------------------
 # Helper functions
 # --------------------------
-SINGULARITY_IMAGE="/data/OpenOmics/SIFs/elasticqtl_0.0.1.sif"
 SINGULARITY_SILENT_WARNINGS=1
 
 die() {
 	echo "ERROR: $*" >&2
 	exit 1
 }
+
+get_current_server() {
+    # Get the hostname
+    hn=$(hostname)
+
+    # biowulf compute
+    if [[ "$hn" =~ ^cn[0-9]{4}$ ]]; then
+        echo "biowulf"
+        return 0
+    fi
+
+    # biowulf head
+    if [[ "$hn" == "biowulf.nih.gov" ]]; then
+        echo "biowulf"
+        return 0
+    fi
+
+    # skyline head/compute
+    if [[ "$hn" =~ ^ai-hpcn[0-9]+ ]]; then
+        echo "skyline"
+        return 0
+    fi
+
+    # Unknown
+    echo "Unknown host profile" >&2
+    return 1
+}
+
+if (get_current_server) | grep -q "biowulf"; then
+	SINGULARITY_IMAGE="/data/OpenOmics/SIFs/elasticqtl_0.0.1.sif"
+elif (get_current_server) | grep -q "skyline"; then
+	SINGULARITY_IMAGE="/data/openomics/SIFs/elasticqtl_0.0.1.sif"
+else
+	die "Unknown server, cannot determine singularity image path"
+fi
 
 run_cmd() {
 	local cmd="$1"
