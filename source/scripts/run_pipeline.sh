@@ -38,9 +38,11 @@ get_current_server() {
     return 1
 }
 
-if (get_current_server) | grep -q "biowulf"; then
+server=$(get_current_server)
+
+if [[ "$server" == "biowulf" ]]; then
 	SINGULARITY_IMAGE="/data/OpenOmics/SIFs/elasticqtl_0.0.1.sif"
-elif (get_current_server) | grep -q "skyline"; then
+elif [[ "$server" == "skyline" ]]; then
 	SINGULARITY_IMAGE="/data/openomics/SIFs/elasticqtl_0.0.1.sif"
 else
 	die "Unknown server, cannot determine singularity image path"
