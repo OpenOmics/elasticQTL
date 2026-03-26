@@ -52,6 +52,6 @@ final_tab[, EN_Weight_AlignedToA1 := EN_Final_Weight]
 final_tab[!is.na(Dosage_Allele) & !is.na(Effect_Allele_A1) & Dosage_Allele != Effect_Allele_A1,
           EN_Weight_AlignedToA1 := -EN_Final_Weight]
 
-setorder(final_tab, -abs(EN_Weight_AlignedToA1))
+final_tab <- final_tab[order(-abs(EN_Weight_AlignedToA1))]
 fwrite(final_tab, out_csv)
 cat("Wrote:", out_csv, "\n")
