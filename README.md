@@ -210,7 +210,7 @@ array     /path/to/array_prefix
 
 > **Tip:** Ensure the manifest ends with a final newline — otherwise the last cohort may be silently skipped in bash loops.
 
-See [`docs/INPUT_FORMATS.md`](docs/INPUT_FORMATS.md) for exact formatting expectations and examples.
+See [`source/docs/INPUT_FORMATS.md`](source/docs/INPUT_FORMATS.md) for exact formatting expectations and examples.
 
 ---
 
@@ -397,7 +397,7 @@ Each cohort score file reports `N_Variants_Used`. This value can differ across c
 
 ## 10. Troubleshooting
 
-See [`TROUBLESHOOTING.md`](source/docs/TROUBLESHOOTING.md) for full details.
+See [`source/docs/TROUBLESHOOTING.md`](source/docs/TROUBLESHOOTING.md) for full details.
 
 **Common issues:**
 
