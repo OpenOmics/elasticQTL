@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SINGULARITY_SILENT_WARNINGS=1
-
+err() { cat <<< "$@" 1>&2; }
 die() {
 	echo "ERROR: $*" >&2
 	exit 1
@@ -18,20 +18,27 @@ get_current_server() {
         return 0
     fi
 
-    # biowulf head
-    if [[ "$hn" == "biowulf.nih.gov" ]]; then
-        echo "biowulf"
-        return 0
-    fi
-
-    # skyline head/compute
+    # skyline compute
     if [[ "$hn" =~ ^ai-hpcn[0-9]+ ]]; then
         echo "skyline"
         return 0
     fi
 
+    # Check if user is attempting to run from
+	# head node a biowulf or skyline head node
+	if [[ "$hn" == "biowulf.nih.gov" || "$hn" =~ ^ai-hpcsubmit[0-9]+ ]]; then
+	    err "############################################################"
+	    err "ERROR: Running this pipeline on a head node is not allowed."
+	    err "Please submit this as a job to the cluster or run it from"
+	    err "an interactive node. You can grab an interactive node by"
+		err "running the following command below:"
+	    err "srun -N 1 -n 1 --time=8:00:00 --mem=64gb -c 4 --pty bash"
+	    err "############################################################"
+	    return 1
+	fi
+
     # Unknown
-    echo "Unknown host profile" >&2
+    err "ERROR: Unknown host profile. Are you running this outside of biowulf or skyline?"
     return 1
 }
 
