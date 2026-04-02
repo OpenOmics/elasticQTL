@@ -397,7 +397,7 @@ Each cohort score file reports `N_Variants_Used`. This value can differ across c
 
 ## 10. Troubleshooting
 
-See [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md) for full details.
+See [`TROUBLESHOOTING.md`](source/docs/TROUBLESHOOTING.md) for full details.
 
 **Common issues:**
 
