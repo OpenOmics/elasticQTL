@@ -308,16 +308,16 @@ pipeline --config config/study.env
 
 ```bash
 # Run through export only (steps 1–6)
-bash source/scripts/run_pipeline.sh --config config/study.env --to-step 6
+bash scripts/run_pipeline.sh --config configs/my.env --to-step 6
 
 # Rerun modeling and downstream only (steps 7–9)
-bash source/scripts/run_pipeline.sh --config config/study.env --from-step 7 --to-step 9
+bash scripts/run_pipeline.sh --config configs/my.env --from-step 7 --to-step 9
 
 # Dry run (preview steps without executing)
-bash source/scripts/run_pipeline.sh --config config/study.env --dry-run
+bash scripts/run_pipeline.sh --config configs/my.env --dry-run
 
 # Overwrite existing outputs
-bash source/scripts/run_pipeline.sh --config config/study.env --force
+bash scripts/run_pipeline.sh --config configs/my.env --force
 ```
 
 ---
@@ -325,7 +325,7 @@ bash source/scripts/run_pipeline.sh --config config/study.env --force
 ### 7.2 Step 2 — External Scoring/Refit
 
 ```bash
-validate --config config/validation.env
+validate --config configs/my_validation.env
 ```
 
 **Where are predictions written?**
