@@ -227,3 +227,7 @@ __marimo__/
 
 # macos display temp files
 .DS_Store
+
+# Output directories
+output/
+source/output/
