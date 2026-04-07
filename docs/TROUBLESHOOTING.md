@@ -643,4 +643,3 @@ When reporting a bug, please include:
 - [`PIPELINE.md`](PIPELINE.md) — Training workflow documentation
 - [`VALIDATION.md`](VALIDATION.md) — Validation/scoring workflow documentation
 - [`INPUT_FORMATS.md`](INPUT_FORMATS.md) — Input file format specifications
-- [`METHODS.md`](METHODS.md) — Statistical methodology details
