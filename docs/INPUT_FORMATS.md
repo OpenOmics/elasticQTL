@@ -32,8 +32,6 @@ FID   IID   pyroptosis_score
 - No need to manually remove these samples
 
 **Best practices:**
-- Use continuous phenotypes (quantitative traits)
-- Variance-standardize or rank-normalize phenotypes before running the pipeline
 - Include FID and IID exactly as they appear in your PLINK `.fam` file
 
 ---
