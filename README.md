@@ -19,7 +19,6 @@ For full details, see:
 - [`docs/PIPELINE.md`](docs/PIPELINE.md) — training workflow steps, nested CV, missing genotype policies, and outputs
 - [`docs/VALIDATION.md`](docs/VALIDATION.md) — external cohort scoring, refit workflow, and cohort harmonization
 - [`docs/INPUT_FORMATS.md`](docs/INPUT_FORMATS.md) — required inputs, config fields, and manifest formats
-- [`docs/METHODS.md`](docs/METHODS.md) — statistical methodology and modeling approach
 - [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md) — common errors and fixes
 
 ---
