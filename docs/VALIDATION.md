@@ -688,5 +688,4 @@ After validation completes successfully:
 
 - [`PIPELINE.md`](PIPELINE.md) — training workflow (Step 1) that produces the required model artifacts
 - [`INPUT_FORMATS.md`](INPUT_FORMATS.md) — detailed cohort manifest format specifications
-- [`METHODS.md`](METHODS.md) — statistical methodology for refitting and scoring
 - [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) — additional common errors and fixes
