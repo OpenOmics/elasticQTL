@@ -628,5 +628,4 @@ After training completes successfully:
 
 - [`VALIDATION.md`](VALIDATION.md) — external cohort scoring and refit workflow (Step 2)
 - [`INPUT_FORMATS.md`](INPUT_FORMATS.md) — detailed input file format specifications
-- [`METHODS.md`](METHODS.md) — statistical methodology and modeling approach
 - [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) — common errors and fixes
