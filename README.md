@@ -1,8 +1,13 @@
-# elasticQTL
+<div align="center">
+   
+  <h1>elasticQTL</h1>
+  
+  **_A reproducible QTL pipeline for PLINK-based association testing, LD clumping, nested elastic net modeling, stability filtering, and final variant annotation — plus an external scoring/refit workflow for WGS/WES/array cohorts._**
 
-> A reproducible QTL pipeline for PLINK-based association testing, LD clumping, nested elastic net modeling, stability filtering, and final variant annotation — plus an external scoring/refit workflow for WGS/WES/array cohorts.
+[![GitHub issues](https://img.shields.io/github/issues/OpenOmics/elasticQTL?color=brightgreen)](https://github.com/OpenOmics/elasticQTL/issues)
+[![GitHub license](https://img.shields.io/github/license/OpenOmics/elasticQTL)](https://github.com/OpenOmics/elasticQTL/blob/main/LICENSE)
 
----
+</div>
 
 ## Overview
 
